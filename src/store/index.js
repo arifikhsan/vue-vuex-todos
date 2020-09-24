@@ -4,8 +4,9 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+  strict: true,
   state: {
-    hello: "Hello world",
+    hello: "Awesome Store",
     products: [
       { name: "Banana Skin", price: 20 },
       { name: "Banana aa", price: 40 },
@@ -13,7 +14,24 @@ export default new Vuex.Store({
       { name: "Banana cc", price: 60 },
     ],
   },
-  mutations: {},
+  getters: {
+    saleProducts: (state) => {
+      const sale = state.products.map((product) => {
+        return {
+          name: "**" + product.name + "**",
+          price: product.price / 2,
+        };
+      });
+      return sale;
+    },
+  },
+  mutations: {
+    reducePrice: (state) => {
+      state.products.forEach((product) => {
+        product.price -= 1;
+      });
+    },
+  },
   actions: {},
   modules: {},
 });
