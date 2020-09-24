@@ -18,22 +18,27 @@
 </template>
 
 <script>
+import { mapState, mapGetters, mapActions } from "vuex";
+
 export default {
   computed: {
-    hello() {
-      return this.$store.state.hello;
-    },
-    products() {
-      return this.$store.state.products;
-    },
-    saleProducts() {
-      return this.$store.getters.saleProducts;
-    },
+    // hello() {
+    //   return this.$store.state.hello;
+    // },
+    // products() {
+    //   return this.$store.state.products;
+    // },
+    // saleProducts() {
+    //   return this.$store.getters.saleProducts;
+    // },
+    ...mapState(["hello", "products"]),
+    ...mapGetters(["saleProducts"]),
   },
   methods: {
-    reducePrice(amount) {
-      this.$store.dispatch("reducePrice", amount);
-    },
+    // reducePrice(amount) {
+    //   this.$store.dispatch("reducePrice", amount);
+    // },
+    ...mapActions(['reducePrice'])
   },
 };
 </script>
