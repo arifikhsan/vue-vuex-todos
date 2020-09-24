@@ -12,7 +12,7 @@
           {{ product.name }}, ${{ product.price }}
         </li>
       </ol>
-      <button @click="reducePrice">Reduce price</button>
+      <button @click="reducePrice(4)">Reduce price</button>
     </div>
   </div>
 </template>
@@ -31,11 +31,8 @@ export default {
     },
   },
   methods: {
-    reducePrice() {
-      // this.$store.state.products.forEach((product) => {
-      //   product.price -= 1;
-      // });
-      this.$store.commit('reducePrice')
+    reducePrice(amount) {
+      this.$store.dispatch("reducePrice", amount);
     },
   },
 };
